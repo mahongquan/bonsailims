@@ -1,0 +1,81 @@
+	<form action="/analysis/main/add/analysis/{{sample.id}}" method="POST">
+		<table class="form_table">
+		<tr>
+			<td>
+				Analysis Type:</td><td>
+				{{form.analysis_type}}
+				| <a href="#" onclick="$('#addmenu').tabs('select', 1);">Or Add a new type</a>
+			</td>
+		</tr>
+		<tr><td>Analysis Attribute:</td><td>{{form.name}}</td></tr>
+		<tr><td>Attribute Value:</td><td>{{form.value}}</td></tr>
+		<tr><td>Which aliquot:</td>
+			<td>
+		
+				<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					{%for k,v in aliquot_dict.items %}
+				      <td>
+				      	{%if not v%}
+				      		<img class="notready" src="/site_media/images/minus-circle.png" border="0"/>
+				      	{%else%}
+				      		<img src="/site_media/images/pipette.png" border="0"/>
+				      	{%endif%}
+				      </td>
+				   	{%endfor%}
+				</tr>
+				<tr>
+					{%for k,v in aliquot_dict.items %}
+				      <td>
+				      	{%if not v%}
+				      		<img class="notready" src="/site_media/images/pencil.png" border="0"/>
+				      	{%else%}
+							<input type="radio" name="aliquot_id" value="{{k}}"/>
+				      	{%endif%}
+				      </td>
+				   	{%endfor%}
+				</tr>
+				<tr>
+					{%for k,v in aliquot_dict.items %}
+				      <td>
+				      	{%if not v%}
+				      		{{k}}
+				      	{%else%}
+				      		<b>{{k}}</b>
+				      	{%endif%}
+				      </td>
+				   	{%endfor%}
+				</tr>								
+				</table>
+			</td>
+		</tr>	
+		<tr>
+			<td>&nbsp;</td>
+			<td><input type="submit" name="submit" id="id_submit" value="Add"/></td>
+		</tr>
+		</table>
+	</form>
+
+<script>
+	$("#id_analysis_type").change( function() {
+		var selected_analysis_type = $('#id_analysis_type').val();
+		console.log("analysis type==>" + selected_analysis_type);
+		$('#id_name').autocomplete("/analysis/attributes/byanalysis_type/"+selected_analysis_type);
+	});
+
+	$('.notready').qtip({
+	  		 content: 'This feature is not ready for this release.',
+	  		 show: 'mouseover',
+	  		 hide: 'mouseout',
+			   position: {
+				  corner: {
+					 target: 'topRight',
+					 tooltip: 'bottomLeft'
+				  }
+			   },
+		    style: { 
+		      tip: 'bottomLeft'
+   			}
+
+	});	
+</script>

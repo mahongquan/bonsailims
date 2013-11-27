@@ -1,0 +1,72 @@
+{% extends 'project_perspective.html'%}
+
+{%block toolbarpane%}
+	{{sample.subject}} &#187; {{sample}} &#187; Analyses &#187; Add
+{%endblock%}
+
+{% block centerpane %}
+
+<div id="tabs">
+     <ul>
+         <li><a href="/analysis/bysample/{{sample.id}}" title="View"><span>View</span></a></li>
+         <li><a href="/analysis/add/" title="Add"><span>Add</span></a></li>
+         <li><a href="/analysis/manage/" title="Manage"><span>Manage</span></a></li>
+     </ul>
+
+<div id="Manage">
+	<p>Manage Attribute types</p>
+</div>
+
+<script>
+	$('#id_name').autocomplete('/analysis/attributes/bysample/{{sample_id}}');
+	$('#analysis_table').colorize({bgColor:'#EAF6CC', hoverColor:'#cce',  oneClick:false});
+	$('#tabs').tabs();
+	$('.editImg').qtip({
+	  		 content: 'Edit',
+	  		 show: 'mouseover',
+	  		 hide: 'mouseout',
+			   position: {
+				  corner: {
+					 target: 'topMiddle',
+					 tooltip: 'bottomMiddle'
+				  }
+			   },
+		    style: { 
+		      tip: 'bottomMiddle'
+   			}
+
+	});
+	$('.deleteImg').qtip({
+	  		 content: 'Remove',
+	  		 show: 'mouseover',
+	  		 hide: 'mouseout',
+			   position: {
+				  corner: {
+					 target: 'topMiddle',
+					 tooltip: 'bottomMiddle'
+				  }
+			   },
+		    style: { 
+		      tip: 'bottomMiddle'
+   			}
+
+	});	
+	$('.monitorImg').qtip({
+	  		 content: 'Analysis',
+	  		 show: 'mouseover',
+	  		 hide: 'mouseout',
+			   position: {
+				  corner: {
+					 target: 'topMiddle',
+					 tooltip: 'bottomMiddle'
+				  }
+			   },
+		    style: { 
+		      tip: 'bottomMiddle'
+   			}
+	});	
+
+</script>
+
+{%endblock%}
+

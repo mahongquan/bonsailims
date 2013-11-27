@@ -1,0 +1,64 @@
+{%extends 'base.html'%}
+{%load core_extras%}
+{%block title%}Show analysis for {{sample}}{%endblock%}
+
+{%block contentcolumn%}
+
+	{%ifequal analyses.count 0%}
+		<img src="/site_media/images/minus-circle.png" border="0"><span class="warning">
+			No analysis found.</span> Add a new analysis from "Create &#187; New Analysis".
+	{%else%}
+		<form id="filter_value_form" action="/analysis/show/bysample/{{sample_id}}/{{page.number}}" method="get" >
+			<input type="checkbox" value="1" name="showvalue" id="id_showvalue" {%if filtered%}checked="checked"{%endif%}>Filter when value is empty?		
+		</form>
+	
+		<table class="datagrid">
+			<thead>
+				<tr>
+				<th>Aliquot Id</th>
+				<th>Analysis Type</th>
+				<th>Attribue</th>
+				<th>Value</th>
+				<th>Last Updated By</th>
+				<th>Date Last Updated </th>
+				<th>Time Last Updated </th></tr>
+			</thead>
+
+			<tbody>
+				{%for analysis in analyses %}
+				<tr>
+				   <td>
+				   		<a href="/analysis/edit/{{analysis.id}}"><img class="editImg" src="/site_media/images/pencil.png" border="0"/></a>
+				   		<a href="/analysis/delete/{{analysis.id}}"><img class="deleteImg" src="/site_media/images/cross.png" border="0"/></a>
+				   		{{analysis.aliquot_id}}
+				   </td>
+				   <td>{{analysis.analysis_type}}</td>
+				   <td>{{analysis.name}}</td>
+				   <td>{{analysis.value}}</td>
+				   <td>{{analysis.last_updated_by.first_name}}</td>
+				   <td>{{analysis.date_time_last_updated|date}}</td>
+				   <td>{{analysis.date_time_last_updated|time}}</td>
+				</tr>
+				{%endfor%}
+		</tbody>
+	</table>
+		<div class="table_page_nav">
+			{%if page.has_previous %}
+				<a href="/analysis/show/bysample/{{sample_id}}/{{page.previous_page_number}}">&lt;&lt; Prev</a>
+			{%endif%}
+
+			{{page}}
+
+			{%if page.has_next %}
+				<a href="/analysis/show/bysample/{{sample_id}}/{{page.next_page_number}}">Next &gt;&gt;</a>
+			{%endif%}
+		</div>
+	{%endifequal%}
+
+<script type="text/javascript" charset="utf-8">
+	$('#id_showvalue').click( function(){
+		$('#filter_value_form').submit();		
+	} );	
+</script>
+
+{%endblock%}

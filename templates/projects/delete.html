@@ -1,0 +1,15 @@
+{%extends 'subject_perspective.html'%}
+
+{%block centerpane%}
+<div id="warning">
+<img src="/site_media/images/exclamation.png"/>Warning: All data including 
+subjects and samples will be deleted.
+</div>
+
+<p>Are you sure to continue?
+	<form action="/project/delete/{{project.id}}" method="POST">
+		<input type="submit" value="Yes, Delete the project">
+	</form>
+</p>
+
+{%endblock%}

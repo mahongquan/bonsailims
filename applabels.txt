@@ -1,0 +1,15 @@
+applables:
+{
+'core': <module 'core.models' from 'C:\Users\mahongquan\Desktop\bonsailims\bonsai\core\models.pyc'>
+, 'sessions': <module 'django.contrib.sessions.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\sessions\models.pyc'>
+, 'staticfiles': <module 'django.contrib.staticfiles.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\staticfiles\models.pyc'>
+, 'admindocs': <module 'django.contrib.admindocs.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\admindocs\models.pyc'>
+, 'markup': <module 'django.contrib.markup.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\markup\models.pyc'>
+, 'messages':<module 'django.contrib.messages.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\messages\models.pyc'>
+, 'sites': <module 'django.contrib.sites.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\sites\models.pyc'>
+, 'auth': <module 'django.contrib.auth.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\auth\models.pyc'>
+, 'admin': <module 'django.contrib.admin.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\admin\models.pyc'>
+, 'contenttypes': <module 'django.contrib.contenttypes.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\contenttypes\models.pyc'>
+,'webdesign': <module 'django.contrib.webdesign.models' from 'D:\python27\lib\site-packages\django-1.4.3-py2.7.egg\django\contrib\webdesign\models.pyc'>
+, 'analysis': <module 'analysis.models' from 'C:\Users\mahongquan\Desktop\bonsailims\bonsai\analysis\models.pyc'>
+}

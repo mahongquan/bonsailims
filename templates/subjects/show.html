@@ -1,0 +1,48 @@
+{% extends 'sample_perspective.html'%}
+
+{% block centerpane %}
+<div style="background-color:#eee; width:100%; margin-top: 0;">
+	<h2>Subject: {{subject.donor_id}}</h2>	
+</div>
+<div style="float:right; border:1px solid #aaa;">
+{% ifequal subject.gender "M" %}
+	<img src="/site_media/images/user-orange.png"  width="32" height="32"/>
+	{% else %}
+	{% ifequal subject.gender "F" %}
+		<img src="/site_media/images/user-orange-female.png"  width="32" height="32"/>
+	{% else %}
+		<img src="/site_media/images/user-silhouette.png"  width="32" height="32"/>
+	{% endifequal %}
+{%endifequal%}	
+</div>
+
+<h3><i style="color:#353">Information</i></h3>
+<blockquote>
+	Age: {%if subject.age %} 
+		{{subject.age}}
+	{%else%}
+		N/A
+	{%endif%}
+		<br />
+	Gender: 
+	{%ifequal subject.gender "M"%} 
+		Male
+	{%else%}{%ifequal subject.gender "F"%}
+			Female
+		{%else%}
+			N/A
+		{%endifequal%}
+	{%endifequal%}
+	<br />
+	A subject of project {{subject.project}}. 
+</blockquote>
+
+<h3><i style="color:#353">Log</i></h3>
+<p style="color: #777">This information is last updated on 
+{{subject.date_time_last_updated|date}} at {{subject.date_time_last_updated|time}} by 
+{{subject.last_updated_by}}.
+</p>
+
+{% endblock %}
+
+

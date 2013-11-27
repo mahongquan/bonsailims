@@ -1,0 +1,15 @@
+{% extends 'project_perspective.html'%}
+
+{%block toolbarpane%}
+	Samples &#187; {{sample}} &#187; Add new analysis
+{%endblock%}
+
+{% block centerpane %}
+<form action="/analysis/bysample/{{sample.id}}" method="POST">
+	<table class="form_table">
+	{{form.as_table}}
+	</table>
+	<p><input type="submit" value="Add" /></p>
+</form>
+{% endblock %}
+

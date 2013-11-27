@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{%load core_extras%}
+{%block title%}All Projects{%endblock%}
+
+{%block contentcolumn%}
+
+<table class="datagrid">
+	<thead>
+	<tr>
+		<th>Project</th>
+		<th>Description</th>
+		<th>Sample No</th>
+        <th>Subjects</th>
+        <th>Samples</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for subscription in subscriptions %}
+		<tr class="{% cycle 'odd' 'even' %}">
+			<td>{{subscription}}</td>
+			<td>{{subscription.description|truncatewords:5}}</td>
+			<td>{{subscription|sample_count}}</td>
+            <td><a href="/subjects/list/{{subscription.id}}/1">Show</a>({{subscription.subjects.count}})</td>
+            <td><a href="/samples/list/byproject/{{subscription.id}}/1">Show</a>({{subscription|sample_count}})</td>
+        </tr>
+	{% endfor %}
+	</tbody>
+</table>
+	<div class="table_page_nav">
+		{{subscriptions.count}} projects are subscribed. 		
+	</div>
+	<div id="deepnote">
+		<img src="/site_media/images/light-bulb.png"/> Click on bells to get notifications about the project.
+		Learn <a href="/help/topic/2">Why?</a>
+	</div>
+	
+	<div id="messageDiv">
+	</div>
+
+{%endblock%}

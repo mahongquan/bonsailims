@@ -1,0 +1,43 @@
+{%extends 'base.html'%} 
+{%block title%}Settings for {{request.user}} {%endblock%} 
+
+{%block contentcolumn%}
+		<div class="breadcrumb">
+			{{request.user}} » Settings
+		</div>
+		<div class="left_col">
+			{% if form.errors %} <b>Solve the errors below</b> {% endif %}
+			<form action="." method="post">
+				{{form.as_table}}
+				<table>
+					<tr>
+						<td>
+							&nbsp; <input type="hidden" name="next" value="{{next}}" id="id_next"/>
+						</td>
+						<td>
+							<input type="submit" name="submit" id="id_submit_button" value="Update"> <input type="button" name="cancel" id="id_cancel_button" value="Cancel" onclick="javascript:history.back();">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div class="rdescription">
+			<h3>
+				Help
+			</h3>You can change some defaults using the form on the left.
+			<h3>
+				Where am I?
+			</h3>
+			<ul>
+				<li>{{request.user}}
+					<ul>
+						<li>Settings
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+<script type="text/javascript">
+	$('.rdescription').corner("bottom");
+</script>
+{%endblock%}

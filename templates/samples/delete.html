@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block contentcolumn%}
+<div class="breadcrumb">
+	Samples &#187; {{sample}} &#187; Delete
+</div>
+<div class="left_col">
+	<img src="/site_media/images/exclamation.png" border="0"/>
+    <b>Are you sure to continue to delete {{sample}}?</b>
+	<form action="/sample/delete/{{sample.id}}" method="POST">
+		<input type="submit" name="submit" id="id_submit" value="Yes, Delete the sample">
+		<input type="button" name="cancel" id="id_cancel" value="No, Go back" onclick="javascript:history.back();"/>
+	</form>
+</div>
+<div class="rdescription">
+					<h3>Help</h3>
+                    All sample data and all relationships descending that subject are all going to be purged
+                    permanently. Please be aware of what you are doing.
+					<h3>Where am I?</h3>
+						<ul>
+							<li>Subjects
+								<ul>
+									<li>Delete</li>
+								</ul>
+							</li>
+						</ul>
+
+</div>
+<script>
+	$('.rdescription').corner("bottom");
+</script>
+
+{%endblock%}

@@ -1,0 +1,96 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>Bonsai LIMS / {%block title%} {%endblock%}</title>
+	<link rel="stylesheet" href="/site_media/css/default.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/site_media/css/smoothness/jquery-ui-1.7.1.custom.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/site_media/css/smoothness/ui.timepickr.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/site_media/css/thickbox.css" type="text/css" media="screen" charset="utf-8">
+	<script type="text/javascript" src="/site_media/js/jquery-1.3.2.min.js" language="javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="/site_media/js/jquery.corner.js"></script>
+    <!--[if IE]><script type="text/javascript" src="scripts/jquery.bgiframe.js"></script><![endif]-->
+    <script type="text/javascript" src="/site_media/js/jquery-ui-1.7.1.custom.min.js" language="javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/site_media/js/jquery.timepickr.min.js" language="javascript" charset="utf-8"></script>
+	<script src="/site_media/js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>	
+    <script type="text/javascript" language="javascript" charset="utf-8">
+		$(document).ready( function() {
+				$('#addnewDiv').hide();
+				$('#bookmarksDiv').hide();
+				$('ul#mainNavMenu').corner();
+                $('#searchbox').corner();
+                $('.vDateField').datepicker();
+                $('.vTimeField').timepickr({rangeMin: ['00','05','10','15','20','25','30','35','40','45','50','55']});
+                $('.vDateField').datepicker('option', {dateFormat: 'yy-mm-dd'});
+			}
+		);
+	</script>
+	{%block extrahead%}
+	{%endblock%}
+</head>
+<body>
+<div id="bigcontainer">
+	<div id="header">
+		<div id="logo">
+			<a href="/">BonsaiLIMS<span class="beta">beta</span></a>
+		</div>
+		<div id="help_signin_out">
+ 			{%if request.user.is_authenticated %}
+			<b>
+				Hello {{request.user.first_name}} | <a href="/user/settings?next={{request.path}}">Settings</a> | <a href="/user/logout/">Logout</a> |
+			</b>
+			{%endif%}
+			<a href="/help">Help</a>
+		</div>
+	</div>
+	{%if request.user.is_authenticated %}
+
+		<div id="leftmenu">
+			<ul id="mainNavMenu" class="menunav">
+                <li><a href="#" onclick="$('#addnewDiv').hide();$('#bookmarksDiv').toggle();">Bookmarks<img src="/site_media/images/arrow-down.png" border="0" align="top"/></a></li>
+				<li><a href="#" onclick="$('#bookmarksDiv').hide();$('#addnewDiv').toggle();">Create<img src="/site_media/images/arrow-down.png" border="0" align="top"/></a></li>
+                <li><a href="/samples/list/byuser/1">Samples Worklist</a></li>
+				<li><a href="/subjects/list/byuser/1">Subjects Worklist</a></li>
+				<li><a href="/project/list/subscribed">My Projects</a></li>
+				<li><a href="/project/list/1">All Projects</a></li>
+			</ul>
+			<ul id="addnewDiv" class="menunav">
+				<li><a href="/analysis/attr/add">New Analysis</a></li>
+				<li><a href="/sample/add">New Sample</a></li>
+				<li><a href="/subject/add">New Subject</a></li>
+			</ul>
+			<ul id="bookmarksDiv" class="menunav">
+				<li><a href="/bookmark/subject/show/1">Subjects</a></li>
+				<li><a href="/bookmark/sample/show/1">Samples</a></li>
+			</ul>
+		</div>
+        <div id="searchbox">
+            <form action="/sample/search" method="POST">
+                <label for="id_sampleid">Sample:</label>
+                <input id="sample_search" type="text" name="sample_id" id="id_sampleid"/>
+                <input id="search_button" type="submit" value="Search">
+            </form>
+        </div>
+	{%endif%}
+
+	<div id="center_container">
+				{%block contentcolumn%}
+				{%endblock%}
+	</div>
+</div>
+<div id="footer">
+		
+			{% if messages %}
+				<ul>
+				    {% for message in messages %}
+				    <li><b>{{ message }}</b></li>
+				    {% endfor %}
+				</ul>
+			{% endif %}
+		
+		&copy;2009 TMRC | <a href="/about">About</a> | <a href="/help">Help</a>
+        <p align="right">
+            <a href="http://www.mozilla-europe.org/en/firefox/"><img src="/site_media/images/firefox.png" border="0" align="top"></a>
+        </p>
+</div>
+</body>
+</html>

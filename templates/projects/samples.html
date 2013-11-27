@@ -1,0 +1,66 @@
+{%extends 'subject_perspective.html'%}
+
+{% block centerpane %}
+<div style="background-color:#eee; width:100%; margin-top: 0;">
+	<h2>Listing all samples of {{project.project_code}}</h2>	
+</div>
+
+{%if error %}
+	<p><img src="/site_media/images/information.png"/>No sample found!</p>	
+{%else%}
+	<table cellspasing="0" cellpadding="0">
+	<thead style="background-color:#89c122">
+		<tr>
+			<th>Edit</th>
+			<th>Subject</th>
+			<th>Barcode No</th>
+			<th>Aliquot No</th>		
+			<th>Collection Method</th>
+			<th>Date/Time Collected</th>
+			<th>Date/Time Destroyed</th>		
+			<th>Date/Time Frozen</th>
+			<th>External Sample Id</th>
+			<th>Material</th>
+			<th>Freezer Location</th>
+			<th>Freeze Method</th>
+			<th>Storage Method</th>			
+			<th>DMS</th>
+		</tr>			
+	</thead>
+	<tbody>
+	{%for sample in page_items.object_list%}
+	<tr class="{% cycle 'odd' 'even' %}">
+		<td><a href="/sample/edit/{{sample.id}}"><img src="/site_media/images/pencil.png" border="1"></a></td>	
+	  	<td>{{sample.subject}}</td>
+		<td>{{sample.barcode_no}}</td>
+		<td>{{sample.aliquot_no}}</td>
+	  	<td>{{sample.collection_method}}</td>
+		<td>{{sample.date_time_collected}}</td>
+		<td>{{sample.date_time_destroyed}}</td>
+	  	<td>{{sample.date_time_frozen}}</td>
+		<td>{{sample.external_sample_id}}</td>
+		<td>{{sample.material}}</td>
+		<td>{{sample.freezer_location}}</td>
+	  	<td>{{sample.freeze_method}}</td>
+		<td>{{sample.storage_method}}</td>
+		<td>{{sample.dms}}</td>
+	</tr>
+	{%endfor%}
+	</tbody>
+	</table>
+	<p style="text-align:center;">
+		{%if page_items.has_previous %}
+			<a href="/project/show/samples/{{project.id}}/10/{{page_items.previous_page_number}}">
+				Previous
+			</a>
+		{% endif %}
+		{{page_items}}
+		{%if page_items.has_other_pages %}
+			<a href="/project/show/samples/{{project.id}}/10/{{page_items.next_page_number}}">
+				Next
+			</a>
+		{% endif %}
+	</p>
+{% endif %}
+{% endblock %}
+

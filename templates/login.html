@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{%block title%}Login{%endblock%}
+
+{%block contentcolumn%}
+	<div style="margin:0 auto;width:500px;">
+	<form action="." method="POST" id="formLogin">{% csrf_token %}
+		<table border="0" cellpadding="2" cellspacing="5">
+			<tr><td class="label">Username:</td>
+				<td class="control"><input type="text" id="id_username" name="id_username"/></td>
+			</tr>
+			<tr><td class="label">Password:</td>
+				<td class="control"><input type="password" id="id_password" name="id_password"/></td>
+			</tr>
+			<tr><td class="label">&nbsp;</td>
+				<td class="control"><input id="login_submit_button" type="submit" value="Login" class="form_submit"/>
+					| <a href="/help#login">Forgot your username/password?</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<p style="text-align:left;">
+		<h2>Welcome to Bonsai LIMS</h2>
+			Bonsai LIMS is the study, sample and results management system designed for <a href="http://www.tmrc.co.uk">TMRC</a>.
+		<h2>Why Bonsai LIMS?</h2>
+			<blockquote><tt>Bonsai is the art of aesthetic miniaturisation of trees. <br/><i>Wikipedia</i></tt></blockquote>
+			Bonsai LIMS is an aesthetic miniaturisation of ATLAS/SQL*LIMS, specifically designed for TMRC.
+		<h2>See what it's all about!</h2>
+			To get started, please login using the box on the top.
+	</p>
+	</div>
+{%endblock%}
+

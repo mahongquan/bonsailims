@@ -1,0 +1,123 @@
+{%extends 'base.html'%}
+{%load core_extras%}
+{%block title%}Subjects you updated{%endblock%}
+{%block extrahead%}
+<script type="text/javascript" language="javascript" charset="utf-8">
+	function bookmark(subject_id) {
+		$.post("/bookmark/subject/add/"+subject_id, function(data) {
+			if( data != "False") {
+                var str = ""+
+                "<a href=\"#\" onclick=\"delete_bookmark("+subject_id+");\">"+
+				"<img id=\"subimg"+subject_id+"\" class=\"subscription_on_img\" src=\"/site_media/images/star.png\" alt=\"Unsubscribe\" border=\"0\"/></a>";
+                $("#subscribe"+subject_id+"_span").html(str);
+                $('#generalStatusDiv').html("<b>You subscribed to"+subject_id+"</b>");
+				$('#generalStatusDiv').fadeOut("slow");
+			}
+			else {
+				$('#generalStatusDiv').html("<b>Error occured during subscription</b>");
+				$('#generalStatusDiv').fadeOut("slow");
+			}
+		}
+		);
+	}
+
+	function delete_bookmark(subject_id) {
+		$.post("/bookmark/subject/remove/"+subject_id, function(data) {
+			if( data != "False") {
+                var str = ""+
+                "<a href=\"#\" onclick=\"bookmark("+subject_id+");\">"+
+				"<img class=\"subscription_off_img\" src=\"/site_media/images/star-empty.png\" alt=\"Subscribe\" border=\"0\"/></a>";
+                $("#subscribe"+subject_id+"_span").html(str);
+    			$('#generalStatusDiv').html("<b>You unsubscribed from"+subject_id+"</b>");
+				$('#generalStatusDiv').fadeOut("slow");
+			}
+			else {
+				$('#generalStatusDiv').html("<b>Error occured during subscription</b>");
+				$('#generalStatusDiv').fadeOut("slow");
+			}
+		}
+		);
+	}
+</script>
+{% endblock %}
+
+{%block contentcolumn%}
+
+<table class="datagrid">
+	<thead>
+	<tr>
+		<th>Subject <i>[Total: <tt>{{paginator.count}}</tt>]</i></th>
+		<th>Age</th>
+		<th>Gender</th>	
+		<th>Samples</th>			
+	</tr>		
+	</thead>
+	{%for subject in subjects %}
+	<tr class="{% cycle 'odd' 'even' %}">
+		<td>
+            <span id="subscribe{{subject.id}}_span">
+    			{%if subject_bookmarks|is_in_subject_bookmarks:subject %}
+    				<a href="#" onclick="delete_bookmark('{{subject.id}}');">
+    				<img id="subimg{{subject.id}}" class="subscription_on_img" src="/site_media/images/star.png" alt="Delete Bookmark" border="0"/></a>
+    			{%else%}
+    				<a href="#" onclick="bookmark('{{subject.id}}');">
+    				<img id="subimg{{subject.id}}" class="subscription_off_img" src="/site_media/images/star-empty.png" alt="Bookmark" border="0"/></a>
+    			{%endif%}
+            </span>
+			<a href="/subject/edit/{{subject.id}}"><img class="editImg" src="/site_media/images/pencil.png" border="0"></a>
+			<a href="/subject/delete/{{subject.id}}"><img class="deleteImg" src="/site_media/images/cross.png" border="0"></a>
+			{{subject}}
+		</td>
+		<td>{{subject.age}}</td>
+		<td>{{subject.gender}}</td>
+		<td><a href="/samples/list/bysubject/{{subject.id}}/1">{{subject.samples.count}}</a></td>
+	</tr>	
+	{%endfor%}
+</table>
+	<div class="table_page_nav">
+		{%if page.has_previous %}
+			<a href="/subjects/list/byuser/{{page.previous_page_number}}">&lt;&lt; Prev</a>
+		{%endif%}
+		{{page}}
+		{%if page.has_next %}
+			<a href="/subjects/list/byuser/{{page.next_page_number}}">Next &gt;&gt;</a>
+		{%endif%}
+	</div>
+	<div class="table_page_nav">
+		Goto &#187; 
+		{% for i in paginator.page_range %}
+			{%ifnotequal i page.number%}
+				<a href="/project/list/{{i}}">{{i}}</a> 
+			{%else%}
+				{{i}}
+			{%endifnotequal%}
+		{% endfor %}
+	</div>
+	
+	<div id="deepnote">
+		<img src="/site_media/images/light-bulb.png" style="float: left;"/> Click on stars to subscribe to or unsubscribe from projects.
+		Learn <a href="/help/topic/1">Why?</a>
+	</div>
+	
+	<div id="messageDiv">
+	</div>
+
+<script>
+	// TODO: BOOKMARKING....	
+	$('.subscription_on_img').mouseover( function() {
+			$(this).attr("src","/site_media/images/star-empty.png");
+		}).mouseout(function() {
+			$(this).attr("src","/site_media/images/star.png");
+	});
+	$('.subscription_off_img').mouseover( function() {
+			$(this).attr("src", "/site_media/images/star.png");
+		}).mouseout(function() {
+			$(this).attr("src", "/site_media/images/star-empty.png");	
+	});
+
+</script>
+
+
+
+{%endblock%}
+

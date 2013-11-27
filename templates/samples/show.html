@@ -1,0 +1,119 @@
+<html>
+<head>
+	<style type="text/css" media="screen">
+			table.sample_detail_grid{
+				text-align: left;
+				font: 11px Arial, "Trebuchet MS", Verdana, sans-serif;
+				width: 90%;
+			}
+			table.sample_detail_grid th{
+				font-weight: bolder;
+				width: 200px;
+			}
+		</style>	
+</head>
+<body>
+<table border="0" class="sample_detail_grid">
+	<tr>
+		<th>
+			Subject:
+		</th>
+		<td>
+			{{sample.subject}}
+		</td>
+	</tr>
+		
+	<tr>
+		<th>
+			Barcode No:
+		</th>
+		<td>
+			{{sample.barcode_no}}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Aliquot No:
+		</th>
+		<td>
+			{{sample.aliquot_no}}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Collection Method:
+		</th>
+		<td>
+			{% if sample.collection_method %} {{sample.collection_method}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Date/Time Collected:
+		</th>
+		<td>
+			{% if sample.date_time_collected %} {{sample.date_time_collected|date}} at {{sample.date_time_collected|time}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Date/Time Destroyed:
+		</th>
+		<td>
+			{% if sample.date_time_destroyed %} {{sample.date_time_destroyed|date}} at {{sample.date_time_destroyed|time}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			DMS Sample Info Sheet On:
+		</th>
+		<td>
+			{% if sample.dms_sample_info_sheet_link %} {{sample.dms_sample_info_sheet_link}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			External Sample Id:
+		</th>
+		<td>
+			{% if sample.external_sample_id %} {{sample.external_sample_id}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Material:
+		</th>
+		<td>
+			{% if sample.material %} {{sample.material}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Storage Method:
+		</th>
+		<td>
+			{% if sample.storage_method %} {{sample.storage_method}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Freezer Location:
+		</th>
+		<td>
+			{% if sample.freezer_location %} {{sample.freezer_location}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+	<tr>
+		<th>
+			Freezer Method:
+		</th>
+		<td>
+			{% if sample.freeze_method %} {{sample.freeze_method}} {% else %} N/A {% endif %}
+		</td>
+	</tr>
+</table>
+<p style="color: #777">
+Last updated on <b>{{sample.date_time_last_updated|date}}</b> at <b>{{sample.date_time_last_updated|time}}</b> by <b>{{sample.last_updated_by}}</b>.
+</p>
+</body>
+</html>

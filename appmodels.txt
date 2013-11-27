@@ -1,0 +1,40 @@
+{'contenttypes':    
+    {'contenttype': <class 'django.contrib.contenttypes.models.ContentType'>
+    }
+, 'auth': 
+    {'permission': <class 'django.contrib.auth.models.Permission'>
+    , 'group_permissions': <class 'django.contrib.auth.models.Group_permissions'>
+    , 'group': <class 'django.contrib.auth.models.Group'>
+    , 'user_user_permissions': <class 'django.contrib.auth.models.User_user_permissions'>
+    , 'user_groups': <class 'django.contrib.auth.models.User_groups'>
+    , 'user': <class 'django.contrib.auth.models.User'>
+    }
+, 'sites': 
+    {'site': <class 'django.contrib.sites.models.Site'>
+    }
+, 'sessions': 
+    {'session': <class 'django.contrib.sessions.models.Session'>
+    }
+, 'admin': 
+    {'logentry': <class 'django.contrib.admin.models.LogEntry'>
+    }
+, 'core': 
+    {'projectcode': <class 'core.models.ProjectCode'>
+    , 'collectionmethod': <class 'core.models.CollectionMethod'>
+    , 'material': <class 'core.models.Material'>
+    , 'storagemethod': <class 'core.models.StorageMethod'>
+    , 'project_subscribers': <class 'core.models.Project_subscribers'>
+    , 'project': <class 'core.models.Project'>
+    , 'subject_subscribers': <class 'core.models.Subject_subscribers'>
+    , 'subject': <class 'core.models.Subject'>
+    , 'sample_subscribers': <class 'core.models.Sample_subscribers'>
+    , 'sample': <class 'core.models.Sample'>
+    }
+, 'profile': 
+    {'userprofile': <class 'core.models.UserProfile'>
+    }
+, 'analysis': 
+    {'analysistype': <class 'analysis.models.AnalysisType'>
+    , 'analysisattribute': <class 'analysis.models.AnalysisAttribute'>
+    }
+}

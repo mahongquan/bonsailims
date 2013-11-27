@@ -1,0 +1,125 @@
+{%extends 'base.html'%}
+{%load core_extras%}
+{%block title%}All Projects{%endblock%}
+
+{%block extrahead%}
+<script type="text/javascript" language="javascript" charset="utf-8">
+	function subscribe(project_id) {
+		$.get("/user/subscribe/"+project_id, function(data) {
+			if( data != "False") {
+                var str = ""+
+                "<a id=\"sublink"+project_id+"\" href=\"#\" onclick=\"unsubscribe("+project_id+");\">"+
+				"<img id=\"subimg"+project_id+"\" class=\"subscription_on_img\" src=\"/site_media/images/star.png\" alt=\"Unsubscribe\" border=\"0\"/></a> ";
+                $("#subscribe"+project_id+"_span").html(str);
+                $('#messageDiv').html("<b>You subscribed to"+project_id+"</b>");
+				$('#messageDiv').fadeOut("slow");
+			}
+			else {
+				$('#messageDiv').html("<b>Error occured during subscription</b>");
+				$('#messageDiv').fadeOut("slow");			
+			}
+		}		
+		);
+	}
+
+	function unsubscribe(project_id) {
+		$.get("/user/unsubscribe/"+project_id, function(data) {
+			if( data != "False") {
+                var str = ""+
+                "<a id=\"sublink"+project_id+"\" href=\"#\" onclick=\"subscribe("+project_id+");\">"+
+				"<img id=\"subimg"+project_id+"\" class=\"subscription_off_img\" src=\"/site_media/images/star-empty.png\" alt=\"Subscribe\" border=\"0\"/></a> ";
+                $("#subscribe"+project_id+"_span").html(str);
+    			$('#messageDiv').html("<b>You unsubscribed from"+project_id+"</b>");
+				$('#messageDiv').fadeOut("slow");
+			}
+			else {
+				$('#messageDiv').html("<b>Error occured during subscription</b>");
+				$('#messageDiv').fadeOut("slow");
+			}
+		}
+		);
+	}
+</script>
+{%endblock%}
+
+
+{%block contentcolumn%} 
+
+<table class="datagrid">
+	<thead>
+	<tr>
+		<th>Project <i>[Total: <tt>{{paginator.count}}</tt>]</i></th>
+		<th>Description</th>
+		<th>Sample No</th>	
+	</tr>		
+	</thead>
+	<tbody>
+	{% for project in projects %}
+		<tr class="{% cycle 'odd' 'even' %}">
+			<td>
+            <span id="subscribe{{project.id}}_span">
+				{%if subscriptions|is_in_list:project %}
+					<a id="sublink{{project.id}}" href="#" onclick="unsubscribe('{{project.id}}');">
+					<img id="subimg{{project.id}}" class="subscription_on_img" src="/site_media/images/star.png" alt="Unsubscribe" border="0"/></a>
+				{%else%}
+					<a id="sublink{{project.id}}" href="#" onclick="subscribe('{{project.id}}');">
+					<img id="subimg{{project.id}}" class="subscription_off_img" src="/site_media/images/star-empty.png" alt="Subscribe" border="0"/></a>
+				{%endif%}
+            </span>{{project.project_code}}
+			</td>
+			<td>{{project.description|truncatewords:5}}</td>
+			<td>{{project|sample_count}}</td>
+		</tr>		
+	{% endfor %}
+	</tbody>
+</table>
+	<div class="table_page_nav">
+		{%if page.has_previous %}
+			<a href="/project/list/{{page.previous_page_number}}">&lt;&lt; Prev</a>
+		{%endif%}
+		
+		{{page}}
+
+		{%if page.has_next %}
+			<a href="/project/list/{{page.next_page_number}}">Next &gt;&gt;</a>
+		{%endif%}
+		
+	</div>
+	<div class="table_page_nav">
+		Goto &#187; 
+		{% for i in paginator.page_range %}
+			{%ifnotequal i page.number%}
+				<a href="/project/list/{{i}}">{{i}}</a> 
+			{%else%}
+				{{i}}
+			{%endifnotequal%}
+		{% endfor %}
+
+	</div>
+
+	<div id="deepnote">
+		<img src="/site_media/images/light-bulb.png"/> Click on stars to subscribe to or unsubscribe from projects.
+		Learn <a href="/help/topic/1">Why?</a>
+	</div>
+	
+	<div id="messageDiv">
+	</div>
+<script>
+
+
+	$('.subscription_on_img').mouseover( function() {
+			$(this).attr("src","/site_media/images/star-empty.png");
+		}).mouseout(function() {
+			$(this).attr("src","/site_media/images/star.png");
+	});
+	$('.subscription_off_img').mouseover( function() {
+			$(this).attr("src", "/site_media/images/star.png");
+		}).mouseout(function() {
+			$(this).attr("src", "/site_media/images/star-empty.png");	
+	});
+		
+</script>
+
+{%endblock%}
+
+	

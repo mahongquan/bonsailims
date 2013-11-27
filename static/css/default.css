@@ -1,0 +1,424 @@
+body {
+	text-align: left;
+	margin: 0px;
+	padding: 0px;
+	line-height: 1.5em;
+	font-family: Arial, Verdana, Tahoma, sans-serif;
+	font-size: .76em;
+	background-color: #fff;
+}
+
+/* page layout*/
+div#bigcontainer{
+	width: 987px;
+	padding: 0px;
+	margin: 0px auto;
+}
+
+div#header {
+	margin-top: 10px;
+	height:65px;
+	background-color:#fff;
+	color:#4682B4;
+}
+
+div#logo {
+	float: left;
+	margin-top: 0px;
+	font-size: 36px;
+}
+
+div#logo a{
+    text-decoration: none;
+}
+div#logo a:visited{
+    text-decoration: none;
+}
+div#logo a:active{
+    text-decoration: none;
+}
+
+
+div#help_signin_out {
+	float: right;
+	margin-top: 0px;
+}
+
+div#searchbox {
+    float: left;
+    font-size: 12px;
+    width: 300px;
+}
+
+div#leftmenu {
+	float: right;
+	font-size: 12px;
+	width: 600px;
+}
+
+div#center_container {
+	clear: both;
+	padding-top: 40px;
+	width: 100%;
+}
+
+span.lims_text {
+	color:#4682B4;
+}
+
+span.beta {
+	font-style: italic;
+	font-size: .47em;
+	vertical-align: super;
+	color:#666;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+form#formLogin {
+	background-color: #fff;
+	color: #222;
+	border-top: 1px solid #dde;
+	border-bottom: 1px solid #dde;
+	text-align: left;
+}
+
+
+form#formLogin table td.label {
+	font-size: 1.1em;
+	color: #333;
+	font-weight: bold;
+	text-align: right;
+}
+
+form#formLogin table td.control {
+	font-size: 1.1em;
+	color: #555;
+	text-align: left;
+}
+
+form#formLogin a {
+	font-size: .67em;
+}
+
+#login_submit_button {
+	text-align:left;
+	font-size: 1em;
+	border: 1px solid #333;
+	background-color: #006699;
+	color: #fff;
+}
+
+
+.inlineblox {
+	display: inline;
+}
+
+#logo {
+	text-align: left;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	width: 20%;
+}
+#content {
+	text-align: left;
+	padding: 0px;
+	float: right;
+	width: 80%;
+	height: 100%;
+	margin: 0px;
+}
+div#footer {
+	clear: both;
+	padding-top: 50px;
+	text-align: center;
+	font-size: 10px;
+	margin: 0px auto;
+	width: 80%;
+}
+
+#main {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	overflow:  scroll;
+}
+
+/* TABLES
+ * =======
+ *
+*/
+
+
+table {
+	width: 100%;
+}
+
+table.datagrid {
+	width: 100%;
+	text-align: left;
+}
+
+table.datagrid td {
+	font-family: Verdana, Tahoma, Arial, sans-serif;
+	font-size: .63em;
+}
+table.datagrid th{
+	background-color: #4682B4;
+	color: #fff;
+	font-family: Verdana, Tahoma, Arial, sans-serif;
+	font-variant: bolder;
+	font-size: .88em;
+}
+
+.table_page_nav {
+	margin: 0px auto;
+	width: 20%;
+	text-align: center;
+	color: #433;
+}
+
+tr.odd {
+	background-color:#FFFAF0;
+}
+
+tr.even {
+	background-color:#F5F5F5;
+}
+
+div#deepnote{
+	margin-top: 100px;
+	float: left;
+}
+
+div#messageDiv{
+	background-color:#00cc00;
+	color:#fff;
+	font-weight: bolder;
+	width: 300px;
+	margin: 0 auto;
+}
+
+
+/*
+ * MENU
+ */
+
+ul.menunav {
+	text-align: right;
+	font-size: .95em;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: right;
+	background-color: #f5f5f5;
+}
+
+ul.menunav li{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
+ul.menunav a{
+	display: block;
+	text-decoration: none;
+	font-weight: bold;
+	color: #333;
+	padding: 10px;
+}
+
+ul.menunav a:hover{
+	text-decoration: underline;
+}
+
+ul.menunav a:active{
+	text-decoration: underline;
+}
+
+ul {
+	list-style-type: none;
+
+}
+
+/*
+ * FORM
+ */
+
+.form_ul {
+	list-style-type: none;
+}
+
+.form_error_list {
+	display: block;
+}
+
+.form_table {
+	text-align: left;
+	margin-left:0px;
+}
+
+.form_table th{
+	text-align: right;
+	font-size: 11px;
+}
+
+.form_table input text {
+	border: 1px solid #333;
+}
+
+.form_ul label {
+	width: 150px;
+	text-align:left;
+	font-size: 1.2em;
+}
+
+input[type=text], input[type=password], select {
+	width: 200px;
+	font-size: 14px;
+	border: 1px solid #cfcfcf;
+	margin-left: 10px;
+}
+
+input[type=submit]{
+	margin-left:10px;
+	border: 1px solid #cfcfcf;
+}
+
+input[type=button] {
+	margin-left:2px;
+	border: 1px solid #cfcfcf;
+}
+
+input.vDateField {
+    width: 120px;
+}
+input.vTimeField {
+    width: 60px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input#sample_search {
+    width: 150px;
+    font-size: 14px;
+    margin: 0px;
+}
+
+input#search_button {
+    margin : 0px;
+    background-color: #006699;
+    color: #fff;
+}
+
+#id_submit, #id_cancel {
+	text-align:left;
+	font-size: .97em;
+	border: 1px solid #cfcfcf;
+	background-color: #006699;
+	color: #fff;
+}
+
+li {
+	list-style-type: none;
+	margin-top:10px;
+}
+
+/* the 'fix' for the datepicker */
+#ui-datepicker-div {
+	font-size: .78em;
+	font-family: Arial, Verdana, Tahoma, sans-serif;
+	z-index: 5;
+}
+
+.form_label {
+	text-align:left;
+	font-size: 11px;
+}
+
+.form_text {
+	font-size: 14px;
+	border: 1px solid #333;
+}
+
+/*For warning text*/
+.warning {
+	color: #cc0000;
+	font-variant: small-caps;
+
+}
+/*Date Picker */
+.vDateField {
+	width: 100px;
+    padding-left: 20px;
+	background-image: url('/site_media/images/calendar-select.png');
+ 	background-repeat: no-repeat;
+    background-position: left center;
+}
+/*Time Picker*/
+.vTimeField {
+	width: 70px;
+    padding-left: 20px;
+	background-image: url('/site_media/images/alarm-clock.png');
+ 	background-repeat: no-repeat;
+    background-position: left center;
+
+}
+
+/*Add analysis dialog*/
+#typeDiv {
+	font-size: .76em;
+	width: 500px;
+
+}
+
+/*Analysis Tab*/
+#tabs {
+	font-family: Arial, Verdana, Tahoma, sans-serif;
+}
+#addmenu {
+	font-family: Arial, Verdana, Tahoma, sans-serif;
+}
+#tabs ul {
+	font-size: .63em;
+}
+
+/* Breadcrumb */
+div.breadcrumb {
+	text-align:left;
+	color: #333;
+	font-size: 11px;
+	font-weight: bold;
+	border-bottom: 1px dashed #cfcfcf;
+}
+
+div.actionBar {
+	background: #ffe;
+	width: 100%;
+	text-align: left;
+}
+
+div.left_col {
+	float:left;
+	padding: 20px;
+	height: 450px;
+}
+
+/* Right description div*/
+div.rdescription{
+	background-color: #fff; /*background color of content*/
+	color: #000; /*text color of content*/
+	/*border: 1px solid #069; border color*/
+	padding-left: 2ex;
+	float: right;
+	margin-top: 0px;
+	width: 450px;
+	background-color: #F5F5F5;
+}
+

@@ -1,0 +1,26 @@
+{%extends 'subject_perspective.html'%}
+
+{% block centerpane %}
+<div style="background-color:#eee; width:100%; margin-top: 0;">
+	<h2>{{project.project_code}}</h2>	
+</div>
+
+<h3><i style="color:#353">Description</i><h3>
+<blockquote>
+	{{project.description}}
+</blockquote>
+
+<h3><i style="color:#353">Related Links</i></h3>
+<ul>
+	<li>DMS<sup>1</sup><a href="{{project.dms_link}}" target="top">{{project.dms_link}}</a></li>
+	<li>FolioTracker<sup>2</sup><a href="{{project.foliotracker_link}}" target="top">{{project.foliotracker_link}}</a></li>
+</ul>
+
+<h3><i style="color:#353">Log</i></h3>
+<p style="color: #777">This information is last updated on 
+{{project.date_time_last_updated|date}} at {{project.date_time_last_updated|time}} by 
+{{project.last_updated_by}}.
+</p>
+
+{% endblock %}
+

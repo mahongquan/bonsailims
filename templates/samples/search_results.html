@@ -1,0 +1,101 @@
+{%extends 'base.html'%}
+{%load core_extras%}
+{%block title%}Sample search for: {{kw}}{%endblock%}
+
+{%block extrahead%}
+<script type="text/javascript" language="javascript" charset="utf-8">
+	function bookmark(sample_id) {
+		$.post("/bookmark/sample/add/"+sample_id, function(data) {
+			if( data != "False") {
+                var str = ""+
+                "<a href=\"#\" onclick=\"delete_bookmark("+sample_id+");\">"+
+				"<img id=\"subimg"+sample_id+"\" class=\"subscription_on_img\" src=\"/site_media/images/star.png\" alt=\"Unsubscribe\" border=\"0\"/></a>";
+                $("#subscribe"+sample_id+"_span").html(str);
+                //$('#generalStatusDiv').html("<b>You subscribed to"+sample_id+"</b>");
+				//$('#generalStatusDiv').fadeOut("slow");
+			}
+			else {
+				//$('#generalStatusDiv').html("<b>Error occured during subscription</b>");
+				//$('#generalStatusDiv').fadeOut("slow");
+			}
+		}
+		);
+	}
+
+	function delete_bookmark(sample_id) {
+		$.post("/bookmark/sample/remove/"+sample_id, function(data) {
+			if( data != "False") {
+                var str = ""+
+                "<a href=\"#\" onclick=\"bookmark("+sample_id+");\">"+
+				"<img class=\"subscription_off_img\" src=\"/site_media/images/star-empty.png\" alt=\"Subscribe\" border=\"0\"/></a>";
+                $("#subscribe"+sample_id+"_span").html(str);
+    			//$('#generalStatusDiv').html("<b>You unsubscribed from"+project_id+"</b>");
+				//$('#generalStatusDiv').fadeOut("slow");
+			}
+			else {
+				//$('#generalStatusDiv').html("<b>Error occured during subscription</b>");
+				//$('#generalStatusDiv').fadeOut("slow");
+			}
+		}
+		);
+	}
+</script>
+{% endblock %}
+
+<div class="breadcrumb">
+	Samples &#187; List by Subject &#187; {{subject}}
+</div>
+{%block contentcolumn%}
+
+<table class="datagrid">
+	<thead>
+	<tr>
+		<th>Barcode No</th>
+		<th>Subject</th>
+		<th>Collection Method</th>
+		<th>Freezer Location</th>
+		<th>Material</th>
+		<th>Aliquot No</th>
+		<th>More</th>
+	</tr>
+	</thead>
+	{%for sample in samples %}
+	<tr  class="{% cycle 'odd' 'even' %}">
+		<td>
+            <span id="subscribe{{sample.id}}_span">
+    			{%if sample_bookmarks|is_in_sample_bookmarks:sample %}
+    				<a href="#" onclick="delete_bookmark('{{sample.id}}');">
+    				<img id="subimg{{sample.id}}" class="subscription_on_img" src="/site_media/images/star.png" alt="Delete Bookmark" border="0"/></a>
+    			{%else%}
+    				<a href="#" onclick="bookmark('{{sample.id}}');">
+    				<img id="subimg{{sample.id}}" class="subscription_off_img" src="/site_media/images/star-empty.png" alt="Bookmark" border="0"/></a>
+    			{%endif%}
+            </span>
+			<a href="/sample/edit/{{sample.id}}"><img class="editImg" src="/site_media/images/pencil.png" border="0"/></a>
+			<a href="/sample/delete/{{sample.id}}"><img class="deleteImg" src="/site_media/images/cross.png" border="0"/></a>
+			<a href="/analysis/show/bysample/{{sample.id}}/1"><img class="monitorImg" src="/site_media/images/monitor.png" border="0"/></a>
+		{{sample.barcode_no}}</td>
+		<td>{{sample.subject}}</td>
+		<td>{{sample.collection_method}}</td>
+		<td>{{sample.freezer_location}}</td>
+		<td>{{sample.material}}</td>
+		<td>{{sample.aliquot_no}}</td>
+		<td><a href="#">Show</a></td>
+	</tr>
+	{%endfor%}
+</table>
+<script>
+	$('.subscription_on_img').mouseover( function() {
+			$(this).attr("src","/site_media/images/star-empty.png");
+		}).mouseout(function() {
+			$(this).attr("src","/site_media/images/star.png");
+	});
+	$('.subscription_off_img').mouseover( function() {
+			$(this).attr("src", "/site_media/images/star.png");
+		}).mouseout(function() {
+			$(this).attr("src", "/site_media/images/star-empty.png");
+	});
+
+</script>
+{%endblock%}
+
